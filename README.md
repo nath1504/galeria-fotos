@@ -1,59 +1,55 @@
-# GaleriaFotos
+# Galería de Fotos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+Aplicación web desarrollada con Angular como parte del Reto 2 de la Universidad Virtual del Estado de Guanajuato (UVEG).
 
-## Development server
+## Descripción
 
-To start a local development server, run:
+La aplicación permite visualizar una colección de fotografías, consultar información detallada de cada imagen y agregar nuevas fotografías mediante un formulario.
 
-```bash
-ng serve
-```
+## Tecnologías utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular
+- TypeScript
+- HTML
+- CSS
+- Git
+- GitHub
+- Apache mediante XAMPP
 
-## Code scaffolding
+## Empaquetado
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+La aplicación fue compilada mediante Angular CLI utilizando el comando:
 
-```bash
-ng generate component component-name
-```
+`ng build --base-href /galeria-fotos/`
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Los archivos generados se utilizaron para realizar el despliegue de la aplicación en el servidor Apache.
 
-```bash
-ng generate --help
-```
+## Versionamiento
 
-## Building
+El proyecto fue inicializado como repositorio Git y se utilizaron commits descriptivos para registrar los cambios realizados.
 
-To build the project run:
+Commit inicial:
 
-```bash
-ng build
-```
+`feat: crear galeria de fotos`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Posteriormente, el proyecto fue publicado en GitHub para facilitar su control de versiones y almacenamiento.
 
-## Running unit tests
+## Despliegue
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Para realizar la simulación del despliegue se utilizó Apache mediante XAMPP.
 
-```bash
-ng test
-```
+Los archivos compilados de la aplicación se colocaron en:
 
-## Running end-to-end tests
+`C:\xampp\htdocs\galeria-fotos`
 
-For end-to-end (e2e) testing, run:
+La aplicación puede consultarse localmente mediante:
 
-```bash
-ng e2e
-```
+`http://localhost/galeria-fotos/`
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Servidor web
 
-## Additional Resources
+Se utilizó Apache como servidor web. La aplicación se encuentra dentro del directorio `htdocs` de XAMPP y es accesible mediante una ruta local.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Autor
+
+Nathalia Arias Mendoza
