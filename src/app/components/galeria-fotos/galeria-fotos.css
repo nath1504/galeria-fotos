@@ -1,0 +1,33 @@
+.galeria{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+
+}
+
+.foto{
+
+    border:1px solid #ccc;
+    border-radius:10px;
+    overflow:hidden;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+    transition:.3s;
+
+}
+
+.foto:hover{
+
+    transform:scale(1.03);
+
+}
+
+.foto img{
+
+    width:100%;
+    height:220px;
+    object-fit:cover;
+
+}

@@ -1,0 +1,41 @@
+<div *ngIf="foto; else sinFoto" class="detalle">
+
+  <h2>Detalle de la fotografía</h2>
+
+  <img
+    [src]="foto?.url"
+    [alt]="foto?.titulo"
+    width="450"
+  >
+
+  <h3>{{ foto?.titulo }}</h3>
+
+  <p>{{ foto?.descripcion }}</p>
+
+  <p><strong>Tipo:</strong> {{ foto?.tipo }}</p>
+
+  <div [ngSwitch]="foto?.tipo">
+
+    <p *ngSwitchCase="'Naturaleza'">
+      🌳 Esta fotografía pertenece a la categoría Naturaleza.
+    </p>
+
+    <p *ngSwitchCase="'Ciudad'">
+      🏙 Esta fotografía pertenece a la categoría Ciudad.
+    </p>
+
+    <p *ngSwitchCase="'Playa'">
+      🏖 Esta fotografía pertenece a la categoría Playa.
+    </p>
+
+    <p *ngSwitchDefault>
+      📷 Otra categoría de fotografía.
+    </p>
+
+  </div>
+
+</div>
+
+<ng-template #sinFoto>
+  <p>No hay una fotografía seleccionada.</p>
+</ng-template>

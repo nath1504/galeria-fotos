@@ -1,0 +1,20 @@
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.contenedor{
+
+    width:90%;
+    margin:auto;
+    padding:20px;
+
+}
+
+h1{
+
+    text-align:center;
+    color:#1976d2;
+    margin-bottom:30px;
+
+}

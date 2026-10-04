@@ -1,0 +1,58 @@
+<button (click)="abrirModal()">
+
+Agregar fotografía
+
+</button>
+
+<div class="modal" *ngIf="mostrarModal">
+
+    <div class="contenido">
+
+        <h2>Nueva Fotografía</h2>
+
+        <input
+            type="text"
+            placeholder="Título"
+            [(ngModel)]="nuevaFoto.titulo">
+
+        <input
+            type="text"
+            placeholder="Descripción"
+            [(ngModel)]="nuevaFoto.descripcion">
+
+        <input
+            type="text"
+            placeholder="URL de la imagen"
+            [(ngModel)]="nuevaFoto.url">
+
+        <select [(ngModel)]="nuevaFoto.tipo">
+
+            <option value="Naturaleza">Naturaleza</option>
+
+            <option value="Ciudad">Ciudad</option>
+
+            <option value="Playa">Playa</option>
+
+            <option value="Otro">Otro</option>
+
+        </select>
+
+        <div class="botones">
+
+            <button (click)="guardar()">
+
+                Guardar
+
+            </button>
+
+            <button (click)="cerrarModal()">
+
+                Cancelar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

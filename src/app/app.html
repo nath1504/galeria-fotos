@@ -1,0 +1,18 @@
+<div class="contenedor">
+
+    <h1>{{ titulo }}</h1>
+
+    <app-carga-fotos
+        (agregar)="agregarFoto($event)">
+    </app-carga-fotos>
+
+    <app-galeria-fotos
+        [fotos]="fotos"
+        (fotoSeleccionada)="seleccionarFoto($event)">
+    </app-galeria-fotos>
+
+    <app-foto-detalle
+        [foto]="fotoSeleccionada">
+    </app-foto-detalle>
+
+</div>
