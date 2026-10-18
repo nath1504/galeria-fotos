@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
+
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef
+} from '@angular/core';
+
+import { CommonModule } from '@angular/common';
 import { Foto } from './models/foto';
+import { FotosService } from './services/fotos.service';
 
 import { GaleriaFotos } from './components/galeria-fotos/galeria-fotos';
 import { FotoDetalle } from './components/foto-detalle/foto-detalle';
@@ -9,6 +17,7 @@ import { CargaFotos } from './components/carga-fotos/carga-fotos';
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     GaleriaFotos,
     FotoDetalle,
     CargaFotos
@@ -16,35 +25,64 @@ import { CargaFotos } from './components/carga-fotos/carga-fotos';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-
+export class App implements OnInit {
   titulo = 'Galería de Fotos';
-
   fotoSeleccionada?: Foto;
+  fotos: Foto[] = [];
+  error = '';
+  cargando = true;
 
-  fotos: Foto[] = [
-    {
-      id: 1,
-      titulo: 'Montañas',
-      descripcion: 'Hermoso paisaje montañoso.',
-      url: 'https://picsum.photos/id/10/600/400',
-      tipo: 'Naturaleza'
-    },
-    {
-      id: 2,
-      titulo: 'Ciudad',
-      descripcion: 'Vista panorámica de una ciudad.',
-      url: 'https://picsum.photos/id/1011/600/400',
-      tipo: 'Ciudad'
-    }
-  ];
+  constructor(
+    private fotosService: FotosService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  seleccionarFoto(foto: Foto) {
+  ngOnInit(): void {
+    this.cargarFotos();
+  }
+
+  cargarFotos(): void {
+    this.cargando = true;
+    this.error = '';
+
+    this.fotosService.obtenerFotos().subscribe({
+      next: (fotos) => {
+        this.fotos = fotos.map(foto => ({
+          ...foto,
+          url: foto.url ||
+            (foto.ruta
+              ? `http://localhost:3000${foto.ruta}`
+              : ''),
+          tipo: foto.tipo || 'General'
+        }));
+
+        console.log('Fotos cargadas en la galería:', this.fotos);
+
+        this.cargando = false;
+
+        // Solicitar a Angular que actualice la vista.
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error al cargar las fotos:', err);
+
+        this.error =
+          'No fue posible cargar las fotos. Verifica que el servidor esté funcionando.';
+
+        this.cargando = false;
+        this.cdr.markForCheck();
+      }
+    });
+  }
+
+  seleccionarFoto(foto: Foto): void {
     this.fotoSeleccionada = foto;
+    this.cdr.markForCheck();
   }
 
-  agregarFoto(foto: Foto) {
-    this.fotos.push(foto);
+  agregarFoto(foto: Foto): void {
+    this.fotos = [...this.fotos, foto];
+    console.log('Foto agregada:', foto);
+    this.cdr.markForCheck();
   }
-
 }

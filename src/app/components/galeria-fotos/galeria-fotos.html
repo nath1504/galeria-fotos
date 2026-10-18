@@ -1,24 +1,21 @@
+
 <div class="galeria">
+  <div
+    class="foto"
+    *ngFor="let foto of fotos"
+    (click)="seleccionar(foto)">
 
-    <div
-        class="foto"
-        *ngFor="let foto of fotos"
-        (click)="seleccionar(foto)">
+    <img
+      [src]="obtenerUrl(foto)"
+      [alt]="foto.titulo || 'Fotografía de la galería'"
+      (error)="imagenError($event, foto)">
 
-        <img
-            [src]="foto.url"
-            [alt]="foto.titulo">
+    <h3>{{ foto.titulo }}</h3>
 
-        <h3>{{ foto.titulo }}</h3>
-
-        <p>{{ foto.tipo }}</p>
-
-    </div>
-
+    <p>{{ foto.tipo }}</p>
+  </div>
 </div>
 
-<p *ngIf="fotos.length==0">
-
-No hay fotografías disponibles
-
+<p *ngIf="fotos.length === 0">
+  No hay fotografías disponibles.
 </p>

@@ -1,0 +1,12 @@
+
+CREATE DATABASE IF NOT EXISTS galeria_fotos;
+
+USE galeria_fotos;
+
+CREATE TABLE IF NOT EXISTS fotos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    url VARCHAR(500) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

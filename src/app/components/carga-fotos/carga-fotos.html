@@ -1,58 +1,43 @@
-<button (click)="abrirModal()">
 
-Agregar fotografía
-
-</button>
+<button type="button" (click)="abrirModal()">Agregar fotografia</button>
 
 <div class="modal" *ngIf="mostrarModal">
+  <div class="contenido">
+    <h2>Nueva fotografia</h2>
 
-    <div class="contenido">
+    <label for="titulo">Titulo</label>
+    <input id="titulo" type="text"
+      placeholder="Titulo de la fotografia"
+      [(ngModel)]="nuevaFoto.titulo">
 
-        <h2>Nueva Fotografía</h2>
+    <label for="descripcion">Descripcion</label>
+    <input id="descripcion" type="text"
+      placeholder="Descripcion"
+      [(ngModel)]="nuevaFoto.descripcion">
 
-        <input
-            type="text"
-            placeholder="Título"
-            [(ngModel)]="nuevaFoto.titulo">
+    <label for="imagen">Seleccionar fotografia</label>
+    <input id="imagen" type="file" accept="image/*"
+      (change)="seleccionarArchivo($event)">
 
-        <input
-            type="text"
-            placeholder="Descripción"
-            [(ngModel)]="nuevaFoto.descripcion">
+    <label for="tipo">Categoria</label>
+    <select id="tipo" [(ngModel)]="nuevaFoto.tipo">
+      <option value="Naturaleza">Naturaleza</option>
+      <option value="Ciudad">Ciudad</option>
+      <option value="Playa">Playa</option>
+      <option value="Otro">Otro</option>
+    </select>
 
-        <input
-            type="text"
-            placeholder="URL de la imagen"
-            [(ngModel)]="nuevaFoto.url">
+    <p *ngIf="mensajeError">{{ mensajeError }}</p>
 
-        <select [(ngModel)]="nuevaFoto.tipo">
-
-            <option value="Naturaleza">Naturaleza</option>
-
-            <option value="Ciudad">Ciudad</option>
-
-            <option value="Playa">Playa</option>
-
-            <option value="Otro">Otro</option>
-
-        </select>
-
-        <div class="botones">
-
-            <button (click)="guardar()">
-
-                Guardar
-
-            </button>
-
-            <button (click)="cerrarModal()">
-
-                Cancelar
-
-            </button>
-
-        </div>
-
+    <div class="botones">
+      <button type="button" (click)="guardar()" [disabled]="guardando">
+        <span *ngIf="!guardando">Guardar</span>
+        <span *ngIf="guardando">Subiendo...</span>
+      </button>
+      <button type="button" (click)="cerrarModal()" [disabled]="guardando">
+        Cancelar
+      </button>
     </div>
-
+  </div>
 </div>
+
